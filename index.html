@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title> Página para María </title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #ffe4ec;
+        color: #5a2a27;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+    }
+    #login {
+        margin-top: 100px;
+    }
+    #contenido, #preguntas {
+        display: none;
+        padding: 20px;
+    }
+    img {
+        max-width: 80%;
+        border-radius: 10px;
+        box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    }
+    /* Contenedor del video cuadrado y recortado */
+    .video-container {
+        position: relative;
+        width: 80%;
+        max-width: 600px;
+        height: 0;
+        padding-bottom: 100%; /* 1:1 ratio cuadrado */
+        margin: 20px auto;
+        overflow: hidden;
+        border-radius: 10px;
+        box-shadow: 0 0 15px rgba(0,0,0,0.2);
+        background: black;
+    }
+    .video-container iframe {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 177.77%; /* 16:9 ratio width relative to height 100% */
+        height: 100%;
+        transform: translate(-50%, -50%);
+        border: 0;
+    }
+    .collage {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        margin-top: 20px;
+    }
+    .collage img {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    button {
+        background-color: #ff6b81;
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        margin: 15px;
+        font-size: 18px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    button:hover {
+        background-color: #ff4757;
+    }
+    textarea {
+        width: 90%;
+        height: 400px;
+        margin-top: 15px;
+        font-size: 16px;
+        padding: 10px;
+        border-radius: 10px;
+        border: 1px solid #ccc;
+        resize: none;
+    }
+    /* Espacio para 3 imágenes en preguntas */
+    .image-space {
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+    }
+    .image-space img {
+        width: 30%;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.15);
+        object-fit: cover;
+        height: 150px;
+    }
+</style>
+</head>
+<body>
+
+<!-- Audio de fondo -->
+<audio id="audioFondo" autoplay loop>
+    <source src="23preguntas.mp3" type="audio/mpeg" />
+</audio>
+
+<!-- Entrada de contraseña -->
+<div id="login">
+    <h2>🔐 Introduce la contraseña para entrar:</h2>
+    <input type="password" id="password" placeholder="Contraseña" />
+    <br />
+    <button onclick="verificarPassword()">Entrar 🔓</button>
+</div>
+
+<!-- Contenido principal -->
+<div id="contenido">
+    <h1>💗 Hola María, ¿cómo estás? 💗</h1>
+    <img src="https://i.pinimg.com/1200x/65/2c/2b/652c2b2b769034689491811613ee3727.jpg" alt="imagen0" />
+
+    <!-- Video cuadrado recortado -->
+    <div class="video-container">
+        <iframe
+            src="9.mp4"
+            allowfullscreen
+            title="Video para María"
+        ></iframe>
+    </div>
+
+    <!-- Collage de fotos -->
+    <h2>📸 Collage de fotos 📸</h2>
+    <div class="collage">
+        <img src="1.jpeg" alt="Foto 1" />
+        <img src="2.jpeg" alt="Foto 2" />
+        <img src="3.jpeg" alt="Foto 3" />
+        <img src="4.jpeg" alt="Foto 4" />
+        <img src="5.jpeg" alt="Foto 5" />
+        <img src="6.jpeg" alt="Foto 6" />
+        <img src="7.jpeg" alt="Foto 7" />
+        <img src="8.jpeg" alt="Foto 8" />
+    </div>
+
+    <!-- Botón a preguntas -->
+    <button onclick="mostrarPreguntas()">Maria responde esto ✍️</button>
+</div>
+
+<!-- Página de preguntas -->
+<div id="preguntas">
+    <h2>📝 María te quiero mucho, siempre estaré para ti 💗</h2>
+
+    <!-- Espacio para 3 imágenes -->
+    <div class="image-space">
+        <img src="10.jpeg" alt="Imagen A" />
+        <img src="https://i.pinimg.com/736x/32/c0/34/32c03496f8eb96d45c50af428b03277a.jpg" alt="Imagen B" />
+        <img src="10.jpeg" alt="Imagen C" />
+    </div>
+
+    <h3>📋 Indicaciones</h3>
+    <p>📋 Copia las preguntas y respóndeme en WhatsApp.</p>
+    <button onclick="copiarPreguntas()">Copiar texto 📋</button>
+    <br /><br />
+    <textarea id="textoPreguntas" readonly>
+23 preguntas, contéstame
+
+1.¿Cuál fue tu primera impresión de mí cuando nos conocimos?
+
+2.¿Crees que hemos cambiado mucho desde que somos amigos?
+
+3. Si tuvieras que describirme en tres palabras, ¿cuáles serían?
+
+4.¿Qué es lo que más te gusta de mi personalidad?
+
+5.¿Crees que nos llevamos mejor que otras amistades que tienes?
+
+6.¿Te incodomodo cando te pego asi en clases? (esque senti que te enojaste y tampoco te quiero incomodrar)
+
+7.¿lo sigo asiendo (cuando no nos vean)?
+
+8.¿Te sientes diferente conmigo que con otros varones?
+
+9.¿Cuál ha sido el momento más divertido que hemos vivido juntos?
+
+10.¿Y el momento más especial?
+
+11.¿Qué harías si un día me pierdes como amigo?
+
+12. Si alguien habla mal de mí, ¿cómo reaccionarías?
+
+13.¿Me confiarías algo que no le dirías a nadie más?
+
+14.¿Crees que te apoyo lo suficiente en lo que haces?
+
+15.¿Qué es lo más bonito que he hecho por ti?
+
+16. Si fuéramos a un viaje juntos solos, ¿adónde te gustaría ir?
+
+17.¿realmente me quieres?
+
+18.¿Que sentiste cuando te pregunte aquello que si querias ser mi novia (terminando ciendo nv-amigos jajaja)?
+
+19. Si mañana nos dijeran que uno de los dos se va a otro país, ¿qué harías para que sigamos igual de unidos?
+
+20.¿Te gustaría que siempre nos llevemos así, aunque pasen muchos años?
+
+21.¿que no te gusta de mi?
+
+22.¿Cómo te imaginas que estaríamos tú y yo dentro de cinco años?
+
+23. Si tuvieras que elegir a una persona para compartir muchos momentos importantes de tu vida ¿quién sería o estubiera como opcion?
+    </textarea>
+    <br /><br />
+    <button onclick="volverInicio()">⬅️ Volver al inicio</button>
+</div>
+
+<script>
+    function verificarPassword() {
+        let pass = document.getElementById("password").value;
+        if (pass === "migaja") {
+            document.getElementById("login").style.display = "none";
+            document.getElementById("contenido").style.display = "block";
+            document.getElementById("audioFondo").play();
+        } else {
+            alert("❌ Contraseña incorrecta");
+        }
+    }
+
+    function mostrarPreguntas() {
+        document.getElementById("contenido").style.display = "none";
+        document.getElementById("preguntas").style.display = "block";
+    }
+
+    function volverInicio() {
+        document.getElementById("preguntas").style.display = "none";
+        document.getElementById("contenido").style.display = "block";
+    }
+
+    function copiarPreguntas() {
+        let texto = document.getElementById("textoPreguntas");
+        texto.select();
+        document.execCommand("copy");
+        alert("✅ Preguntas copiadas al portapapeles");
+    }
+
+    // Manejar "Enter" en botones
+    document.addEventListener("keydown", function (e) {
+        if (e.key === "Enter") {
+            const active = document.activeElement.tagName.toLowerCase();
+            if (active !== "textarea" && active !== "input") {
+                document.activeElement.click();
+            }
+        }
+    });
+</script>
+</body>
+</html>
